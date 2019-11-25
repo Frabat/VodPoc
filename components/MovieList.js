@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, FlatList, Image, Text} from 'react-native';
-import Services from '../components/Services';
-import {PLACEHOLDER} from '../constants/Constants';
+import { FlatList, Image, Text, View } from 'react-native';
+import Services from './Services';
 
-export default class MovieListBrandNew extends React.Component {
+export default class MovieList extends React.Component {
   services = new Services();
   state = {
     data: [
@@ -11,9 +10,9 @@ export default class MovieListBrandNew extends React.Component {
     ],
   };
   componentDidMount = () => {
-    console.log('DATA ->', this.props.data);
+    console.log('DATA ->', this.props.data.stripQuery);
     this.services
-      .getElements(this.props.data.section.strips[2].stripQuery)
+      .getElements(this.props.data.stripQuery)
       .then(result => {
         console.log('Guarda come ti fetcho pt.2, guarda', result);
         this.setState({
@@ -31,12 +30,12 @@ export default class MovieListBrandNew extends React.Component {
         <Text>{item.title}</Text>
       </>
     );
-  }
+   }
   render() {
     console.log('Nel Movielistbrandnew abbiamo ', this.state.data);
     return (
       <View>
-        <Text>{this.props.data.section.strips[2].stripName}</Text>
+        <Text>{this.props.data.stripName}</Text>
         <FlatList
           horizontal
           renderItem={this._renderitem}

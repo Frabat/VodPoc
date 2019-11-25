@@ -1,11 +1,10 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import { ScrollView } from 'react-native';
 import MainCarousel from './components/Carousel';
 import LoadingScreen from './components/LoadingScreen';
-import MovieListBrandNew from './components/MovieListBrandNew';
-import MovieListPopular from './components/MovieListPopular';
+import MovieList from './components/MovieList';
 import Services from './components/Services';
-import {View} from 'native-base';
+
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -16,7 +15,7 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.services.getConfig().then(result => {
-      console.log('Mamma mia che palle', result);
+      console.log('ConfigResult ', result);
 
       this.setState({
         isLoading: false,
@@ -26,16 +25,21 @@ export default class HomeScreen extends React.Component {
       // console.log("It's a me, il risultato", this.state.sectionName)
     });
   }
+  
   render() {
-    console.log('config ->', this.state.config);
-    const mainData = this.state.config.length > 0 ? this.state.config[0] : [];
-    return !this.state.isLoading ? (
+    const mainData = this.state.config.length >0 ? this.state.config[0] : [];
+    console.log('config ->', this.state.config[0]);
+    const mainDataPopular = this.state.config.length > 0 ? this.state.config[0].section.strips[1] : [];
+    console.log('MainData POPUPAR = ', mainDataPopular)
+    const mainDataBrandNew = this.state.config.length > 0 ?this.state.config[0].section.strips[2] : []
+    console.log("MAINDATA BRANDNEW = ", mainDataBrandNew)
+    return !this.state.isLoading  ? (
       <>
       
         <ScrollView>
           <MainCarousel data={mainData} />
-          <MovieListPopular data={mainData} />
-          <MovieListBrandNew data={mainData} />
+           <MovieList data={mainDataPopular}  />
+          <MovieList data={mainDataBrandNew} /> 
         </ScrollView>
       </>
     ) : (
