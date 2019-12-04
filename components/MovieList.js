@@ -32,9 +32,9 @@ export default class MovieList extends React.Component {
     );
    }
   render() {
-    console.log('Nel Movielistbrandnew abbiamo ', this.state.data);
+    // console.log('Nel Movielistbrandnew abbiamo ', this.state.data);
     return (
-      <View>
+      <>
         <Text>{this.props.data.stripName}</Text>
         <FlatList
           horizontal
@@ -42,7 +42,7 @@ export default class MovieList extends React.Component {
           data={this.state.data}
           keyExtractor={this._renderitem.id}
         />
-      </View>
+      </>
     );
   }
 }
