@@ -15,9 +15,9 @@ state = {
   ]
 }
   componentDidMount = () => {
-    // console.log('DATA ->', this.props.data);
+    
     this.services.getElements(this.props.data.section.strips[0].stripQuery).then(result =>{
-      // console.log("Guarda che la fetch ti riporta questa roba", result)
+      
       this.setState ({
         data : result
       }
