@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, ScrollView} from 'react-native'
+import {SafeAreaView, ScrollView, StatusBar} from 'react-native'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation';
 import HomeScreen from './screens/HomeScreen';
 import Kids from './screens/KidsScreen';
@@ -12,6 +12,7 @@ export default class App extends React.Component {
   render() {
     return (
       <>
+      <StatusBar hidden = {true} />
       
         <AppDrawerNavigator />
       </>

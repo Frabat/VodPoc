@@ -1,6 +1,6 @@
-import { Button, Header, Left, Text } from 'native-base';
+import {Button, Header, Icon, Left, Text, Body} from 'native-base';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import {ScrollView, View} from 'react-native';
 import LoadingScreen from '../components/LoadingScreen';
 import Services from '../components/Services';
 import VideoList from '../components/VideoList';
@@ -35,13 +35,20 @@ class Movies extends React.Component {
 
     return !this.state.isLoading ? (
       <>
-        <Header>
-          <Left>
-            <Button onPress={() => this.props.navigation.openDrawer}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-        </Header>
+        <View>
+          <Header transparent>
+            <Left>
+              <Button transparent>
+                <Icon
+                  name="menu"
+                  style={{color: 'black'}}
+                  onPress={() => this.props.navigation.openDrawer()}
+                />
+              </Button>
+            </Left>
+            <Body />
+          </Header>
+        </View>
         <ScrollView>
           <Text>Evidence</Text>
           <VideoList data={moviesData} />

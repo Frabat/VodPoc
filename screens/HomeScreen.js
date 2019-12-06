@@ -1,6 +1,6 @@
-import { Button, Header, Icon, Left } from 'native-base';
+import {Button, Header, Icon, Left, Body} from 'native-base';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import {ScrollView, View} from 'react-native';
 import MainCarousel from '../components/Carousel';
 import LoadingScreen from '../components/LoadingScreen';
 import MovieList from '../components/MovieList';
@@ -36,13 +36,20 @@ export default class HomeScreen extends React.Component {
 
     return !this.state.isLoading ? (
       <>
-       <Header>
-          <Left>
-            <Button onPress={() => this.props.navigation.openDrawer}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-        </Header>
+        <View>
+          <Header transparent>
+            <Left>
+              <Button transparent>
+                <Icon
+                  name="menu"
+                  style = {{color : "black"}}
+                  onPress={() => this.props.navigation.openDrawer()}
+                />
+              </Button>
+            </Left>
+            <Body />
+          </Header>
+        </View>
         <ScrollView>
           <MainCarousel data={mainData} />
           <MovieList data={mainDataPopular} />

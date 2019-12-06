@@ -1,0 +1,84 @@
+{
+  "id": 244,
+  "title": "Vod SDP",
+  "layout": 243,
+  "content": [
+    {
+      "pageBox": "full",
+      "defaultLayer": 0,
+      "layers": {
+        "title": "OnDemand",
+        "type": "ondemand",
+        "isInteractive": true,
+        "configuration": {
+          "config": [
+            {
+              "sectionName": "Featured",
+              "section": {
+                "strips": [
+                  {
+                    "stripName": "Evidence",
+                    "stripQuery": "?subCategories=Crime,Drama,Action"
+                  },
+                  {
+                    "stripName": "Popular",
+                    "stripQuery": "?subCategories=Thriller,Action,Adventure"
+                  },
+                  {
+                    "stripName": "Brand New",
+                    "stripQuery": "?subCategories=Comedy,Drama,Crime"
+                  }
+                ]
+              }
+            },
+            {
+              "sectionName": "Movies",
+              "section": {
+                "strips": [
+                  {
+                    "stripName": "Evidence",
+                    "stripQuery": "?subCategories=Comedy"
+                  },
+                  {
+                    "stripName": "Popular",
+                    "stripQuery": "?subCategories=Adventure"
+                  },
+                  {
+                    "stripName": "Brand New",
+                    "stripQuery": "?subCategories=Action"
+                  }
+                ]
+              }
+            },
+            {
+              "sectionName": "Series",
+              "section": {
+                "strips": [
+                  {
+                    "stripName": "Evidence",
+                    "stripQuery": "?subCategories=Crime"
+                  }
+                ]
+              }
+            },
+            {
+              "sectionName": "Kids",
+              "section": {
+                "strips": [
+                  {
+                    "stripName": "Evidence",
+                    "stripQuery": "?subCategories=Adventure"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "style": []
+      }
+    }
+  ],
+  "styles": [],
+  "status": 1,
+  "author_name": "Application"
+}
