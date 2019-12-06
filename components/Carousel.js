@@ -1,40 +1,48 @@
 import React from 'react';
-import { Dimensions, Image, Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import Services from "../components/Services";
-let deviceWidth = Dimensions.get('window').width
-let deviceHeight = Dimensions.get('window').height
-let carouselWidth = deviceWidth*0.9
-let carouselHeight = carouselWidth*1.78
+import Services from '../components/Services';
+let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
+let carouselWidth = deviceWidth * 0.9;
+let carouselHeight = carouselWidth * 1.78;
 
 export default class MainCarousel extends React.Component {
-services = new Services();
-state = {
-  data : [
-
-  ]
-}
+  services = new Services();
+  state = {
+    data: [],
+  };
   componentDidMount = () => {
-    // console.log('DATA ->', this.props.data);
-    this.services.getElements(this.props.data.section.strips[0].stripQuery).then(result =>{
-      // console.log("Guarda che la fetch ti riporta questa roba", result)
-      this.setState ({
-        data : result
-      }
-      )
-    }
-    )
-  }
+    this.services
+      .getElements(this.props.data.section.strips[0].stripQuery)
+      .then(result => {
+        this.setState({
+          data: result,
+        });
+      });
+  };
 
   _renderItem({item, index}) {
     return (
       <>
-        
-          <Image 
-          style={{width: deviceWidth, height: carouselHeight, paddingHorizontal : 10, marginHorizontal : 10}} 
-          source={{uri: item.imageCard}} />
-          <Text>{item.title}</Text>
-          <Text>{item.description}</Text>
+        <Image
+          style={{
+            width: deviceWidth,
+            height: carouselHeight,
+            paddingHorizontal: 10,
+            marginHorizontal: 10,
+          }}
+          source={{uri: item.imageCard}}
+        />
+        <Text>{item.title}</Text>
+        <Text>{item.description}</Text>
       </>
     );
   }
@@ -50,11 +58,11 @@ state = {
             renderItem={this._renderItem}
             sliderWidth={deviceWidth}
             itemWidth={carouselWidth}
-            sliderHeight = {carouselHeight}
-            itemHeight = {carouselHeight}
+            sliderHeight={carouselHeight}
+            itemHeight={carouselHeight}
             data={this.state.data}
-            style = {{padding : 12}}
-            hasParallaxImages = {true}
+            style={{padding: 12}}
+            hasParallaxImages={true}
           />
         </View>
       </View>
@@ -65,7 +73,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding : 10
+    padding: 10,
   },
   developmentModeText: {
     marginBottom: 20,

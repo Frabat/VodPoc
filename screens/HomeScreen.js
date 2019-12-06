@@ -4,6 +4,7 @@ import MainCarousel from '../components/Carousel';
 import LoadingScreen from '../components/LoadingScreen';
 import MovieList from '../components/MovieList';
 import Services from '../components/Services';
+import HeaderTop from '../components/Header';
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -14,51 +15,39 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.services.getConfig().then(result => {
-      console.log('ConfigResult ', result);
-
       this.setState({
         isLoading: false,
         config: result.content[0].layers.configuration.config,
-        // section:{sectionName: result.content[0].layers.configuration.config[0].sectionName}
       });
-      // console.log("It's a me, il risultato", this.state.sectionName)
     });
   }
 
   render() {
     const mainData = this.state.config.length > 0 ? this.state.config[0] : [];
-    // console.log('config ->', this.state.config[0]);
+
     const mainDataPopular =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[1]
         : [];
-    console.log('MainData POPUPAR = ', mainDataPopular)
+
     const mainDataBrandNew =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[2]
         : [];
-    // console.log("MAINDATA BRANDNEW = ", mainDataBrandNew)
-    return !this.state.isLoading ? (
-        
-      <>
-      <ScrollView>
 
+    return !this.state.isLoading ? (
+      <>
+        <HeaderTop />
+        <ScrollView>
           <MainCarousel data={mainData} />
           <MovieList data={mainDataPopular} />
           <MovieList data={mainDataBrandNew} />
-      </ScrollView>
+        </ScrollView>
       </>
-        
     ) : (
       <>
         <LoadingScreen />
       </>
     );
   }
-
-  // <View>
-  //   <Text>
-  //     NO.
-  //   </Text>
-  // </View>
 }
