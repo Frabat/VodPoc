@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
+import { FlatList, Image, Text } from 'react-native';
 import Services from './Services';
 
 export default class MovieList extends React.Component {
@@ -10,11 +10,11 @@ export default class MovieList extends React.Component {
     ],
   };
   componentDidMount = () => {
-    console.log('DATA ->', this.props.data.stripQuery);
+   
     this.services
       .getElements(this.props.data.stripQuery)
       .then(result => {
-        console.log('Guarda come ti fetcho pt.2, guarda', result);
+        
         this.setState({
           data: result,
         });
@@ -32,7 +32,7 @@ export default class MovieList extends React.Component {
     );
    }
   render() {
-    // console.log('Nel Movielistbrandnew abbiamo ', this.state.data);
+   
     return (
       <>
         <Text>{this.props.data.stripName}</Text>

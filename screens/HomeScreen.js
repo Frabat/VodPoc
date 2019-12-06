@@ -1,11 +1,10 @@
+import { Button, Header, Icon, Left } from 'native-base';
 import React from 'react';
-import {ScrollView} from 'react-native';
+import { ScrollView } from 'react-native';
 import MainCarousel from '../components/Carousel';
 import LoadingScreen from '../components/LoadingScreen';
 import MovieList from '../components/MovieList';
 import Services from '../components/Services';
-import HeaderTop from '../components/Header';
-
 export default class HomeScreen extends React.Component {
   state = {
     isLoading: true,
@@ -37,7 +36,13 @@ export default class HomeScreen extends React.Component {
 
     return !this.state.isLoading ? (
       <>
-        <HeaderTop />
+       <Header>
+          <Left>
+            <Button onPress={() => this.props.navigation.openDrawer}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+        </Header>
         <ScrollView>
           <MainCarousel data={mainData} />
           <MovieList data={mainDataPopular} />

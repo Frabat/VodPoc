@@ -1,10 +1,59 @@
+import { Button, Header, Left, Text } from 'native-base';
 import React from 'react';
-import {Text} from 'native-base';
-class Movies extends React.Component {
-  state = {};
+import { ScrollView } from 'react-native';
+import LoadingScreen from '../components/LoadingScreen';
+import Services from '../components/Services';
+import VideoList from '../components/VideoList';
 
+class Movies extends React.Component {
+  state = {
+    isLoading: true,
+    config: [],
+  };
+  services = new Services();
+  componentDidMount() {
+    this.services.getConfig().then(result => {
+      this.setState({
+        isLoading: false,
+        config: result.content[0].layers.configuration.config,
+      });
+    });
+  }
   render() {
-    return <Text>Movies</Text>;
+    const moviesData =
+      this.state.config.length > 0
+        ? this.state.config[1].section.strips[0]
+        : [];
+    const moviesDataPopular =
+      this.state.config.length > 0
+        ? this.state.config[1].section.strips[1]
+        : [];
+    const moviesDataBrandnew =
+      this.state.config.length > 0
+        ? this.state.config[1].section.strips[2]
+        : [];
+
+    return !this.state.isLoading ? (
+      <>
+        <Header>
+          <Left>
+            <Button onPress={() => this.props.navigation.openDrawer}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+        </Header>
+        <ScrollView>
+          <Text>Evidence</Text>
+          <VideoList data={moviesData} />
+          <Text>Popular</Text>
+          <VideoList data={moviesDataPopular} />
+          <Text>Brand New</Text>
+          <VideoList data={moviesDataBrandnew} />
+        </ScrollView>
+      </>
+    ) : (
+      <LoadingScreen />
+    );
   }
 }
 

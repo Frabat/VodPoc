@@ -10,7 +10,7 @@ export default class HeaderTop extends React.Component {
         <Header transparent >
           <Left style = {{alignContent : "flex-start"}}>
 
-          <Button transparent  >
+          <Button transparent onPress = {this.props} >
             <Icon name="menu"  style = {{color :"black", fontSize : 30}} />
           </Button>
           </Left>

@@ -5,18 +5,23 @@ import HomeScreen from './screens/HomeScreen';
 import Kids from './screens/KidsScreen';
 import Movies from './screens/MoviesScreen';
 import Series from './screens/SeriesScreen';
+import HeaderTop from './components/Header';
+console.disableYellowBox = true
+
 export default class App extends React.Component {
   render() {
     return (
+      <>
       
         <AppDrawerNavigator />
-      
+      </>
     );
   }
 }
 
 const CustomDrawer = (props) => (
   <SafeAreaView style = {{flex : 1}}>
+  
     <ScrollView>
       <DrawerItems {...props} />
     </ScrollView>

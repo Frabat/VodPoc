@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Services from '../components/Services';
 let deviceWidth = Dimensions.get('window').width;

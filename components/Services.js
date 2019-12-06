@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {STRIP_ENDPOINT, QUERY_ENDPOINT} from '../constants/Constants';
+import { QUERY_ENDPOINT, STRIP_ENDPOINT } from '../constants/Constants';
 
 export default class Services {
   getConfig() {
