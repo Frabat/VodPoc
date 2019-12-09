@@ -1,10 +1,11 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StatusBar} from 'react-native'
-import { createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { createDrawerNavigator, DrawerItems, createStackNavigator } from 'react-navigation';
 import HomeScreen from './screens/HomeScreen';
 import Kids from './screens/KidsScreen';
 import Movies from './screens/MoviesScreen';
 import Series from './screens/SeriesScreen';
+import VideoScreen from './screens/VideoScreen'
 import HeaderTop from './components/Header';
 console.disableYellowBox = true
 
@@ -14,7 +15,7 @@ export default class App extends React.Component {
       <>
       <StatusBar hidden = {true} />
       
-        <AppDrawerNavigator />
+        <MainStackNavigator />
       </>
     );
   }
@@ -34,5 +35,18 @@ const AppDrawerNavigator = createDrawerNavigator({
   Movies : Movies,
   Series : Series
 }, {
-  contentComponent : CustomDrawer
+  contentComponent : CustomDrawer, 
+  initialRouteName : "Featured"
 })
+
+
+const AppStackNavigator = createStackNavigator({
+ videoPage : VideoScreen
+})
+
+
+const MainStackNavigator = createStackNavigator({
+  MainDrawer : AppDrawerNavigator, 
+  Main : AppStackNavigator
+}, 
+{initialRouteName : "MainDrawer", headerMode : "none"})
