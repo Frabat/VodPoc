@@ -10,7 +10,6 @@ let carouselHeight = carouselWidth * 1.78;
 
 export default class MainCarousel extends React.Component {
   services = new Services();
-
   state = {
     data: [],
   };
