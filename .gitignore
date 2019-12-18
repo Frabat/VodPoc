@@ -34,7 +34,8 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-
+#VIDEO
+*.mp4
 # BUCK
 buck-out/
 \.buckd/

@@ -23,6 +23,7 @@ export default class LoadingScreen extends React.Component {
   render() {
     return (
       <LottieView
+        style={{backgroundColor: '#070D0B'}}
         source={require('../assets/loadingScreen.json')}
         progress={this.state.progress}
         autoplay={true}

@@ -1,46 +1,58 @@
 import React from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import Services from './Services';
 
 export default class MovieList extends React.Component {
   services = new Services();
   state = {
-    data: [
-        
-    ],
+    data: [],
   };
   componentDidMount = () => {
-    console.log('DATA ->', this.props.data.stripQuery);
-    this.services
-      .getElements(this.props.data.stripQuery)
-      .then(result => {
-        console.log('Guarda come ti fetcho pt.2, guarda', result);
-        this.setState({
-          data: result,
-        });
+    this.services.getElements(this.props.data.stripQuery).then(result => {
+      this.setState({
+        data: result,
       });
+    });
   };
   _renderitem({item, index}) {
     return (
       <>
-        <Image
-          style={{width: 120, height: 80, marginHorizontal: 20}}
-          source={{uri: item.imageCard}}
-        />
-        <Text>{item.title}</Text>
+        <TouchableOpacity
+      
+          onPress={() => {
+            const currentID = item.id;
+            this.props.navigation.navigate('videoPage', {id: {currentID}});
+            
+          }}>
+          <View style = {{marginHorizontal : 5,marginBottom : 2, width : 100}}>
+            <Image
+              style={{width: 100, height: 150}}
+              source={{uri: item.imageCard}}
+            />
+            <Text style={{color: 'white', fontSize: 15, textAlign : "auto"}}>{item.title}</Text>
+          </View>
+        </TouchableOpacity>
       </>
     );
-   }
+  }
   render() {
-    // console.log('Nel Movielistbrandnew abbiamo ', this.state.data);
     return (
       <>
-        <Text>{this.props.data.stripName}</Text>
+        <Text
+          style={{
+            color: 'white',
+            marginHorizontal: '3%',
+            marginVertical: '3%',
+          }}>
+          {this.props.data.stripName}
+        </Text>
         <FlatList
+          style = {{marginHorizontal : "3%"}}
           horizontal
-          renderItem={this._renderitem}
+          renderItem={this._renderitem.bind(this)}
           data={this.state.data}
           keyExtractor={this._renderitem.id}
+          navigation={this.props.navigation}
         />
       </>
     );

@@ -1,10 +1,10 @@
+import {Button, Header, Icon, Left, Body} from 'native-base';
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 import MainCarousel from '../components/Carousel';
 import LoadingScreen from '../components/LoadingScreen';
 import MovieList from '../components/MovieList';
 import Services from '../components/Services';
-
 export default class HomeScreen extends React.Component {
   state = {
     isLoading: true,
@@ -14,51 +14,73 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.services.getConfig().then(result => {
-      console.log('ConfigResult ', result);
-
       this.setState({
         isLoading: false,
         config: result.content[0].layers.configuration.config,
-        // section:{sectionName: result.content[0].layers.configuration.config[0].sectionName}
       });
-      // console.log("It's a me, il risultato", this.state.sectionName)
     });
   }
 
   render() {
     const mainData = this.state.config.length > 0 ? this.state.config[0] : [];
-    // console.log('config ->', this.state.config[0]);
+
     const mainDataPopular =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[1]
         : [];
-    console.log('MainData POPUPAR = ', mainDataPopular)
+
     const mainDataBrandNew =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[2]
         : [];
-    // console.log("MAINDATA BRANDNEW = ", mainDataBrandNew)
-    return !this.state.isLoading ? (
-        
-      <>
-      <ScrollView>
 
-          <MainCarousel data={mainData} />
-          <MovieList data={mainDataPopular} />
-          <MovieList data={mainDataBrandNew} />
-      </ScrollView>
+    return !this.state.isLoading ? (
+      <>
+        <View>
+          <Header
+            transparent
+            style={{
+              alignItems: 'flex-start',
+              justifyContent: 'space-between',
+              backgroundColor: '#070D0B',
+            }}>
+            <Left>
+              <Button transparent style={{width: '60%'}}>
+                <Icon
+                  name="menu"
+                  style={{color: '#248A33', width: '100%', fontSize : 35}}
+                  onPress={() => this.props.navigation.openDrawer()}
+                />
+              </Button>
+            </Left>
+            <Body style={{marginLeft: 22}}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  justifyContent: 'space-around',
+                  color: '#FFFFFF',
+                }}>
+                Featured
+              </Text>
+            </Body>
+          </Header>
+        </View>
+        <ScrollView style={{backgroundColor: '#070D0B'}}>
+          <MainCarousel data={mainData} navigation={this.props.navigation} />
+          <MovieList
+            data={mainDataPopular}
+            navigation={this.props.navigation}
+          />
+          <MovieList
+            data={mainDataBrandNew}
+            navigation={this.props.navigation}
+          />
+        </ScrollView>
       </>
-        
     ) : (
       <>
         <LoadingScreen />
       </>
     );
   }
-
-  // <View>
-  //   <Text>
-  //     NO.
-  //   </Text>
-  // </View>
 }
