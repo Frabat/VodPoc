@@ -8,6 +8,8 @@ import videoPlayer from './screens/playerScreen';
 import Series from './screens/SeriesScreen';
 import VideoScreen from './screens/VideoScreen';
 
+
+
 console.disableYellowBox = true;
 
 export default class App extends React.Component {
@@ -47,6 +49,7 @@ const AppDrawerNavigator = createDrawerNavigator(
     Kids: Kids,
     Movies: Movies,
     Series: Series,
+    // Donotpress : Hbbtv
   },
   {
     contentComponent: CustomDrawer,

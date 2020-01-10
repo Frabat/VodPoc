@@ -1,5 +1,6 @@
-import {Button, Header, Icon, Left, Body} from 'native-base';
 import React from 'react';
+import PTRView from 'react-native-pull-to-refresh';
+import {Button, Header, Icon, Left, Body} from 'native-base';
 import {ScrollView, View, Text} from 'react-native';
 import MainCarousel from '../components/Carousel';
 import LoadingScreen from '../components/LoadingScreen';
@@ -13,6 +14,15 @@ export default class HomeScreen extends React.Component {
   services = new Services();
 
   componentDidMount() {
+    // this.services.getConfig().then(result => {
+    //   this.setState({
+    //     isLoading: false,
+    //     config: result.content[0].layers.configuration.config,
+    //   });
+    // });
+    this.configuration();
+  }
+  configuration() {
     this.services.getConfig().then(result => {
       this.setState({
         isLoading: false,
@@ -20,7 +30,12 @@ export default class HomeScreen extends React.Component {
       });
     });
   }
-
+  _refresh = ()=> {
+    return new Promise((resolve)=> {
+      this.configuration();
+      setTimeout(()=>{resolve()})
+    })
+  }
   render() {
     const mainData = this.state.config.length > 0 ? this.state.config[0] : [];
 
@@ -48,7 +63,7 @@ export default class HomeScreen extends React.Component {
               <Button transparent style={{width: '60%'}}>
                 <Icon
                   name="menu"
-                  style={{color: '#248A33', width: '100%', fontSize : 35}}
+                  style={{color: '#248A33', width: '100%', fontSize: 35}}
                   onPress={() => this.props.navigation.openDrawer()}
                 />
               </Button>
@@ -65,17 +80,19 @@ export default class HomeScreen extends React.Component {
             </Body>
           </Header>
         </View>
-        <ScrollView style={{backgroundColor: '#070D0B'}}>
-          <MainCarousel data={mainData} navigation={this.props.navigation} />
-          <MovieList
-            data={mainDataPopular}
-            navigation={this.props.navigation}
-          />
-          <MovieList
-            data={mainDataBrandNew}
-            navigation={this.props.navigation}
-          />
-        </ScrollView>
+        <PTRView onRefresh={this._refresh}>
+          <ScrollView style={{backgroundColor: '#070D0B'}}>
+            <MainCarousel data={mainData} navigation={this.props.navigation} />
+            <MovieList
+              data={mainDataPopular}
+              navigation={this.props.navigation}
+            />
+            <MovieList
+              data={mainDataBrandNew}
+              navigation={this.props.navigation}
+            />
+          </ScrollView>
+        </PTRView>
       </>
     ) : (
       <>
