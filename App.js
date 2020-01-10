@@ -43,6 +43,8 @@ const CustomDrawer = props => (
   </SafeAreaView>
   </>
 );
+
+//Contiene le rotte per le "macroclassi" laterali
 const AppDrawerNavigator = createDrawerNavigator(
   {
     Featured: HomeScreen,
@@ -59,6 +61,7 @@ const AppDrawerNavigator = createDrawerNavigator(
   },
 );
 
+//Reindirizzazione del tap sulla pagina del film o sul player 
 const AppStackNavigator = createStackNavigator(
   {
     videoPage: VideoScreen,
@@ -69,8 +72,8 @@ const AppStackNavigator = createStackNavigator(
 
 const MainStackNavigator = createStackNavigator(
   {
-    MainDrawer: AppDrawerNavigator,
-    Main: AppStackNavigator,
+    MainDrawer: AppDrawerNavigator, //Menù laterale
+    Main: AppStackNavigator,  //Qualsiasi altro tap (navigazione normale/stack)
   },
   {initialRouteName: 'MainDrawer', headerMode: 'none'},
 );
