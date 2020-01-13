@@ -7,6 +7,13 @@ import LoadingScreen from '../components/LoadingScreen';
 import MovieList from '../components/MovieList';
 import Services from '../components/Services';
 export default class HomeScreen extends React.Component {
+  //isLoading è una booleana che viene settata a false una volta 
+  //che la fetch dei dati dal JSON è completata
+  //config è il vettore in cui il JSON ricevuto viene temporaneamente
+  //salvato. La funzione fa riferimento ad una classe di servizi
+  //se eventualmente si vuole passare ad utilizzare dei componenti 
+  //funzionali (e.g. usando gli Hooks) l'implementazione mediante il costrutto "services = new Services()" 
+  //non sarà più necessaria, basterà richiamare la funzione direttamente
   state = {
     isLoading: true,
     config: [],
@@ -14,14 +21,12 @@ export default class HomeScreen extends React.Component {
   services = new Services();
 
   componentDidMount() {
-    // this.services.getConfig().then(result => {
-    //   this.setState({
-    //     isLoading: false,
-    //     config: result.content[0].layers.configuration.config,
-    //   });
-    // });
+  
     this.configuration();
   }
+  //funzione in cui viene richiamata getConfig() per recuperare il JSON.
+  //Stranamente la fetch ha un problema di accessi, ovvero in alcuni momenti della giornata
+  //è estremamente lenta nel recuperare i dati. 
   configuration() {
     this.services.getConfig().then(result => {
       this.setState({
@@ -30,6 +35,9 @@ export default class HomeScreen extends React.Component {
       });
     });
   }
+  //funzione Pull to refresh. Attualmente implementata solo qui in maniera indicativa.
+  //Bisogna spostare la logica di fetch al JSON (configuration(); ) all'interno di questa promise 
+  //nel caso in cui la si voglia implementare
   _refresh = ()=> {
     return new Promise((resolve)=> {
       this.configuration();
@@ -37,13 +45,14 @@ export default class HomeScreen extends React.Component {
     })
   }
   render() {
+    //dati da passare alla componente carosello
     const mainData = this.state.config.length > 0 ? this.state.config[0] : [];
-
+//dati da passare alla prima flatlist
     const mainDataPopular =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[1]
         : [];
-
+//Dati da passare alla seconda flatlist
     const mainDataBrandNew =
       this.state.config.length > 0
         ? this.state.config[0].section.strips[2]
@@ -51,6 +60,7 @@ export default class HomeScreen extends React.Component {
 
     return !this.state.isLoading ? (
       <>
+      
         <View>
           <Header
             transparent
@@ -82,7 +92,7 @@ export default class HomeScreen extends React.Component {
         </View>
         <PTRView onRefresh={this._refresh}>
           <ScrollView style={{backgroundColor: '#070D0B'}}>
-            <MainCarousel data={mainData} navigation={this.props.navigation} />
+            <MainCarousel data={mainData} navigation={this.props.navigation} /> 
             <MovieList
               data={mainDataPopular}
               navigation={this.props.navigation}

@@ -2,6 +2,9 @@ import React from 'react';
 import {Animated, Easing} from 'react-native';
 import LottieView from 'lottie-react-native';
 
+//Componente che renderizza una schermata di caricamento
+//utilizza Lottie di Airbnb per renderizzare un'animazione 
+//utilizzando un JSON di base presente negli assets
 export default class LoadingScreen extends React.Component {
   constructor(props) {
     super(props);

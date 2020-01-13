@@ -1,6 +1,7 @@
 import { Button, Footer, FooterTab, Icon, Text } from 'native-base';
 import React from 'react';
 
+//DEPRECATO
 export default class MyFooter extends React.Component {
   render() {
     return (

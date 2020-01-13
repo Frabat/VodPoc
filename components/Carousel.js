@@ -22,10 +22,13 @@ export default class MainCarousel extends React.Component {
         });
       });
   };
-
+//nel renderItem viene passato l'oggetto CarouselItem che è in realtà il carosello vero e proprio
+//Inizialmente era definito qui ma la separazione delle componenti è necessaria per la navigazione
+//perché, altrimenti, non è possibile implementare un navigatore stack
   _renderItem({item, index}) {
     return (
       <>
+      
         <CarouselItem data={item} navigation={this.props.navigation} />
       </>
     );

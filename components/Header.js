@@ -1,6 +1,6 @@
 import { Button, Container, Header, Icon, Left, Right, Body } from 'native-base';
 import React from 'react';
-
+//DEPRECATO
 export default class HeaderTop extends React.Component {
   render() {
     return (

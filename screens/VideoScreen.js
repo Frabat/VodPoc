@@ -17,6 +17,8 @@ class VideoScreen extends React.Component {
   componentDidMount() {
     const {navigation} = this.props;
     const id = navigation.getParam('id', []);
+    //recupero l'id dal componente padre con il navigation.getParam('id') per poi passarlo alla funzione
+    //che interroga il JSON per avere i dati completi. Necessaria per futuri miglioramenti (e.g. episodi disponibili, clip aggiuntive, etc)
     id
       ? this.services.getTitle(id.currentID).then(response =>
           this.setState({

@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, Image, View, TouchableOpacity} from 'react-native';
 import Services from './Services';
+//componente utilizzato nel render delle classi Kids e Movies
 export default class VideoList extends React.Component {
   state = {Data: []};
   _renderitem({item, index}) {

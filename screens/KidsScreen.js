@@ -12,6 +12,7 @@ class Kids extends React.Component {
     config: [],
   };
   services = new Services();
+  //chiamata al JSON
   componentDidMount() {
     this.services.getConfig().then(result => {
       this.setState({
@@ -20,6 +21,7 @@ class Kids extends React.Component {
       });
     });
   }
+   
   render() {
     const seriesData =
       this.state.config.length > 0

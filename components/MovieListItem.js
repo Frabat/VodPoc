@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
+//singolo elemento renderizzato da Movielist
 export default class MovieListItem extends React.Component {
   static propTypes = {
     data: PropTypes.object.isRequired,

@@ -2,6 +2,8 @@ import React from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import Services from './Services';
 
+//componente principale che renderizza le liste orizzontali all'interno di Featured e 
+// series. 
 export default class MovieList extends React.Component {
   services = new Services();
   state = {
@@ -14,6 +16,7 @@ export default class MovieList extends React.Component {
       });
     });
   };
+  
   _renderitem({item, index}) {
     return (
       <>

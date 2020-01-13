@@ -9,8 +9,12 @@ import Series from './screens/SeriesScreen';
 import VideoScreen from './screens/VideoScreen';
 
 
-
+//elimina i warning presenti sullo schermo del dispositivo
 console.disableYellowBox = true;
+
+//main dell'intera applicazione, viene richiamato qui il 
+//componente MainStackNavigator che contiene le altre componenti
+//a cui fa riferimento l'applicazione
 
 export default class App extends React.Component {
   render() {
@@ -25,6 +29,8 @@ export default class App extends React.Component {
 }
 
 
+//definizione del componente customdrawer, necessaria per la 
+//personalizzazione del Drawer
 
 const CustomDrawer = props => (
   <>
@@ -43,6 +49,7 @@ const CustomDrawer = props => (
   </SafeAreaView>
   </>
 );
+//implementazione del drawer
 const AppDrawerNavigator = createDrawerNavigator(
   {
     Featured: HomeScreen,
@@ -58,7 +65,8 @@ const AppDrawerNavigator = createDrawerNavigator(
     initialRouteName: 'Featured'
   },
 );
-
+//definizione di un navigatore Stack, necessario per raggiungere
+//le pagine di dettagli video e di riproduzione video 
 const AppStackNavigator = createStackNavigator(
   {
     videoPage: VideoScreen,
@@ -67,6 +75,8 @@ const AppStackNavigator = createStackNavigator(
   {headerMode: 'none'},
 );
 
+//Navigazione stack necessaria per contenere sia il drawer 
+//che la navigazione alle pagine di riproduzione
 const MainStackNavigator = createStackNavigator(
   {
     MainDrawer: AppDrawerNavigator,
