@@ -79,8 +79,8 @@ const AppStackNavigator = createStackNavigator(
 //che la navigazione alle pagine di riproduzione
 const MainStackNavigator = createStackNavigator(
   {
-    MainDrawer: AppDrawerNavigator,
-    Main: AppStackNavigator,
+    MainDrawer: AppDrawerNavigator, //Menù laterale
+    Main: AppStackNavigator,  //Qualsiasi altro tap (navigazione normale/stack)
   },
   {initialRouteName: 'MainDrawer', headerMode: 'none'},
 );

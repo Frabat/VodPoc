@@ -105,6 +105,7 @@ export default class HomeScreen extends React.Component {
         </PTRView>
       </>
     ) : (
+      //Componente LOTTIE per l'animazione
       <>
         <LoadingScreen />
       </>
